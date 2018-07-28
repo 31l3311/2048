@@ -21,7 +21,7 @@ public class UI {
 
 		button.setAlignmentX(con.CENTER_ALIGNMENT);
 		panel.add(button);
-		panel.add(Box.createHorizontalStrut(2));
+		panel.add(Box.createHorizontalStrut(1));
 
 		ActionListener listener = new ClickListener(i);
 		button.addActionListener(listener);
