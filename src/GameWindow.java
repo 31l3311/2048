@@ -25,7 +25,7 @@ public class GameWindow extends JFrame
   public GameWindow(int numbrows, int numbcols)
   {
     super("GameWindow");
-    setDefaultCloseOperation(3);
+    setDefaultCloseOperation(2);
     setResizable(false);
     
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
