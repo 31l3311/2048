@@ -20,6 +20,7 @@ public class GameWindow extends JFrame
   private int squaresize = 60;
   private ArrayList<Integer> moves;
   private int mposx = 0,mposy = 0;
+  private final int mouseBuffer = 200;
   
   public GameWindow(int numbrows, int numbcols)
   {
@@ -41,14 +42,14 @@ public class GameWindow extends JFrame
       public boolean dispatchKeyEvent(KeyEvent ke) {
               switch (ke.getID()) {
               case KeyEvent.KEY_PRESSED:
-                  if (ke.getKeyCode() == KeyEvent.VK_W) {
-                    System.out.println("W");
-                  } else if (ke.getKeyCode() == KeyEvent.VK_A) {
-                    System.out.println("A");
-                  } else if (ke.getKeyCode() == KeyEvent.VK_S) {
-                    System.out.println("S");
-                  } else if (ke.getKeyCode() == KeyEvent.VK_D) {
-                    System.out.println("D");
+                  if (ke.getKeyCode() == KeyEvent.VK_W || ke.getKeyCode() == KeyEvent.VK_UP) {
+                    System.out.println("Up (KEY)");
+                  } else if (ke.getKeyCode() == KeyEvent.VK_A || ke.getKeyCode() == KeyEvent.VK_LEFT) {
+                    System.out.println("Left (KEY)");
+                  } else if (ke.getKeyCode() == KeyEvent.VK_S || ke.getKeyCode() == KeyEvent.VK_DOWN) {
+                    System.out.println("Down (KEY)");
+                  } else if (ke.getKeyCode() == KeyEvent.VK_D || ke.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    System.out.println("Right (KEY)");
                   }
                   break;
               }
@@ -59,14 +60,14 @@ public class GameWindow extends JFrame
     //Mouse
     this.playfield.addMouseListener(new MouseListener() {
       public void mouseReleased(MouseEvent e) {
-        if(mposx+100 < e.getX()){ //right
-          System.out.println("Right (D)");
-        } else if(mposx-100 > e.getX()){ //left
-          System.out.println("Left (A)");
-        } else if(mposy+100 < e.getY()){ //down
-          System.out.println("Down (S)");
-        } else if(mposy-100 > e.getY()){ //up
-          System.out.println("Up (W)");
+        if(mposx+mouseBuffer < e.getX()){ //right
+          System.out.println("Right (MOUSE)");
+        } else if(mposx-mouseBuffer > e.getX()){ //left
+          System.out.println("Left (MOUSE)");
+        } else if(mposy+mouseBuffer < e.getY()){ //down
+          System.out.println("Down (MOUSE)");
+        } else if(mposy-mouseBuffer > e.getY()){ //up
+          System.out.println("Up (MOUSE)");
         }
       }
       
@@ -151,12 +152,10 @@ public class GameWindow extends JFrame
               g2.setColor(Color.ORANGE);
               switch(this.board[j][i]){
                 case(2):
-                  System.out.println(2);
                   g2.drawString("2", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
                   g2.setColor(Color.BLUE);
                   break;
                 case(4):
-                  System.out.println(4);
                   g2.drawString("4", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
                   break;
                 case(8):break;
