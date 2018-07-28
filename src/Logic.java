@@ -39,7 +39,7 @@ public class Logic {
                             board[j][i] = 0;
                         }
                     } else if(direction == 'd'){
-                        if(j+1 <= board.length && board[j+1][i] == 0){
+                        if(j+1 <= board[i].length && board[j+1][i] == 0){
                             board[j+1][i] = board[j][i];
                             board[j][i] = 0;
                             move(board,'d');
