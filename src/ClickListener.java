@@ -14,14 +14,20 @@ public class ClickListener implements ActionListener
 	public void actionPerformed(ActionEvent event) {
 		switch(i){
 			case(0):System.out.println("Starting game(hu)!");
-			GameWindow kot = new GameWindow(10,10);
+			/*
+			GameWindow kot = new GameWindow(4,4);
 			int[][] multi = new int[][]{
+				{ 2, 0, 0, 2 },
 				{ 0, 0, 0, 0 },
-				{ 0, 2, 0, 0 },
 				{ 0, 0, 0, 0 },
-				{ 0, 0, 4, 0 }
+				{ 0, 4, 0, 4 }
 			  };
-			kot.printBoard(aamachen);
+			kot.printBoard(multi);
+			*/
+			Logic logic = new Logic();
+
+
+
 			break;
 			case(1):System.out.println("Starting game(ai)!");new Logic();break;
 			case(2):System.out.println("Exiting game!");System.exit(0);break;

@@ -134,10 +134,13 @@ public class GameWindow extends JFrame
       for (int i = 0; i < this.board.length; i++) { //ROW
         for (int j = 0; j < this.board[0].length; j++) { //COLUMN
             System.out.println("Creating field ("+i+"/"+j+")");
-            int ii = i+1;
-            int jj = j+1;
-
-            switch(this.board[j][i]){
+            int ni = i;
+            int nj = j;
+            if(i != 0 && j != 0) {
+              ni -= 1;
+              nj -= 1;
+            }
+            switch(this.board[i][j]){
               case(0):g2.setColor(Color.LIGHT_GRAY);break;
               case(2):g2.setColor(Color.BLUE);break;
               case(4):g2.setColor(Color.BLACK);break;
@@ -146,18 +149,18 @@ public class GameWindow extends JFrame
 
             g2.fill(new Rectangle2D.Double(i * GameWindow.this.squaresize + 1, j * GameWindow.this.squaresize + 1, GameWindow.this.squaresize - 1, GameWindow.this.squaresize - 1));
 
-            if (this.board[j][i] != 0) {
-              System.out.println("Not Zero it is:"+this.board[j][i]);
+            if (this.board[i][nj] != 0) {
+              System.out.println("Not Zero it is:"+this.board[i][j]);
               g2.setColor(Color.ORANGE);
-              switch(this.board[j][i]){
+              switch(this.board[i][nj]){
                 case(2):
                   System.out.println(2);
-                  g2.drawString("2", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  g2.drawString("2", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, j * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
                   g2.setColor(Color.BLUE);
                   break;
                 case(4):
                   System.out.println(4);
-                  g2.drawString("4", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  g2.drawString("4", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, j * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
                   break;
                 case(8):break;
               }

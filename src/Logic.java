@@ -1,6 +1,6 @@
 public class Logic {
 
-    public static void main(String[] args) {
+    public Logic() {
         //initialize stat Parameters
         final int ROWS = 4;
         final int COLS = 4;
@@ -10,17 +10,18 @@ public class Logic {
         final int ersteZwei = 2;
         final int zweiteZwei = 2;
 
-        
+        GameWindow window = new GameWindow(ROWS,COLS);
+
 
         int[][] board = makeBoard(ROWS, COLS, ersteZwei, zweiteZwei,startTiles);
-        boolean[][] open = new boolean[ROWS][COLS];
 
         boolean alive = true;
 
-        window.printBoard(board, open);
-        int[] move = window.getMove();
+        window.printBoard(board);
 
-		window.printBoard(board,open);
+        //int[] move = window.getMove();
+
+        //window.printBoard(board,open);
     }
 
     public static int[][] makeBoard(int ROWS, int COLS, int ersteZwei, int zweiteZwein, int startTiles) {
@@ -44,9 +45,9 @@ public class Logic {
     public void printBoard(int[][] board, boolean[][] open) {
     }
 
-    public int[] getMove() {
-        return move;
-    }
+    //public int[] getMove() {
+    //    return move;
+    //}
 
 
 }

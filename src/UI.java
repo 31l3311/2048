@@ -28,12 +28,12 @@ public class UI {
 		return button;
 	}
 	
-	private static void addALabel(String text, Container con, JPanel panel,int i) {
+	private static void addALabel(String text, Container con, JPanel panel,int i,Color col) {
 		JLabel thumb = new JLabel();
 		thumb.setText(text);
 		thumb.setAlignmentX(con.CENTER_ALIGNMENT);
 		thumb.setFont(new Font("Calibri", Font.PLAIN, i));
-		thumb.setForeground(Color.BLACK);
+		thumb.setForeground(col);
 		panel.add(thumb);
     }
 
@@ -44,11 +44,11 @@ public static void main(String[] args) {
 	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 	//add objects
-	addALabel("2048", frame.getContentPane(),panel,45);
+	addALabel("2048", frame.getContentPane(),panel,45,Color.BLUE);
 	addAButton("Play (hooman mode)",frame.getContentPane(),panel,0);
 	addAButton("Play (AI mode)",frame.getContentPane(),panel,1);
 	addAButton("Exit game! (fag)",frame.getContentPane(),panel,2);
-	addALabel("by Kim Roggenbuck & Phil Roggenbuck", frame.getContentPane(),panel,15);
+	addALabel("by Kim Roggenbuck & Phil Roggenbuck", frame.getContentPane(),panel,15,Color.BLACK);
 		
 	//style frame and show it
 	frame.add(panel);
