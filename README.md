@@ -1,5 +1,12 @@
 # 2048
 
+## TODO
+
+* Fix wrong tiles matched first
+* Fix automatic color change
+* Add Themes
+* Add Options menu
+
 ## Instructions
 
 ## How to play

@@ -3,6 +3,7 @@ public class Logic {
     private static int ROWS = 0;
     private static int COLS = 0;
     private static GameWindow gameWindow;
+    public static boolean alive = true;
 
     public Logic(GameWindow gameWindow,int ROWS,int COLS, int startTiles, int ersteZwei, int zweiteZwei) { //pls make me a singleton, i love u
         this.COLS = COLS;
@@ -10,18 +11,16 @@ public class Logic {
         this.gameWindow = gameWindow;
         int[][] board = makeBoard(ersteZwei, zweiteZwei,startTiles);
 
-        boolean alive = true;
-
         gameWindow.printBoard(board);
     }
 
-    public static void spawnTiles(int[][] board){
+    private static void spawnTiles(int[][] board){
         int counter = 0;
         while (counter == 0) {
             int x = (int) (Math.random() * ROWS);
             int y = (int) (Math.random() * COLS);
             if (board[x][y] == 0) {
-                //board[x][y] = 2;
+                board[x][y] = 2;
                 counter++;
                 System.out.println("Added tile");
             }
@@ -31,6 +30,18 @@ public class Logic {
     public static int[][] move(int[][]board,char direction){
         for (int i = 0; i < board.length; i++) { //ROW
             for (int j = 0; j < board[0].length; j++) { //COLUMN
+                /*
+                if(!alive || i+1 < board[j].length && board[j][i] != board[j][i+1]){
+                    if(!alive || i-1 >= 0 && board[j][i] != board[j][i-1]){
+                        if(!alive || j-1 >= 0 && board[j][i] != board[j-1][i]){
+                            if(!alive || j+1 < board.length && board[j][i] != board[j+1][i]){
+                                alive = false;
+                                return board;
+                            }
+                        }
+                    }
+                }
+                TODO: FIX*/
                 if(board[j][i] != 0){
                     System.out.println("Move detected: ("+j+"/"+i+")["+board[j][i]+"]");
                     if(direction == 'l'){
@@ -44,20 +55,20 @@ public class Logic {
                             i = 0;j = 0;
                         }
                     } else if(direction == 'r'){
-                        if(i+1 <= board.length && board[j][i+1] == board[j][i]){
+                        if(i+1 < board.length && board[j][i+1] == board[j][i]){
                             board[j][i+1] = board[j][i+1]*2;
                             board[j][i] = 0;
-                        } else if(i+1 <= board.length && board[j][i+1] == 0) {
+                        } else if(i+1 < board.length && board[j][i+1] == 0) {
                             board[j][i + 1] = board[j][i];
                             board[j][i] = 0;
                             System.out.println("Move done: (" + j + "/" + i + ")[" + board[j][i] + "]");
                             i = 0;j = 0;
                         }
                     } else if(direction == 'd'){
-                            if(j+1 <= board.length && board[j+1][i] == board[j][i]){
+                            if(j+1 < board.length && board[j+1][i] == board[j][i]){
                                 board[j+1][i] = board[j+1][i]*2;
                                 board[j][i] = 0;
-                            } else if(j+1 <= board.length && board[j+1][i] == 0){
+                            } else if(j+1 < board.length && board[j+1][i] == 0){
                             board[j+1][i] = board[j][i];
                             board[j][i] = 0;
                             System.out.println("Move done: ("+j+"/"+i+")["+board[j][i]+"]");
@@ -74,12 +85,11 @@ public class Logic {
                             i = 0;j = 0;
                         }
                     }
-                    gameWindow.printBoard(board);
-                        //Thread.sleep(50L);
                 }
             }
         }
         spawnTiles(board);
+        gameWindow.printBoard(board);
         return board;
     }
 

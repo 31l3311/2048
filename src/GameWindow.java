@@ -141,11 +141,11 @@ public class GameWindow extends JFrame
       g2.fill(getVisibleRect());
 
       System.out.println("-------CreatingField-------");
-      System.out.println("Creating field (ROW/COLUMN)");
+      //System.out.println("Creating field (ROW/COLUMN)");
 
       for (int i = 0; i < this.board.length; i++) { //ROW
         for (int j = 0; j < this.board[0].length; j++) { //COLUMN
-            System.out.println("(i:"+i+"/j:"+j+")["+this.board[j][i]+"]");
+            //System.out.println("(i:"+i+"/j:"+j+")["+this.board[j][i]+"]");
             int ii = i+1;
             int jj = j+1;
 
@@ -154,6 +154,7 @@ public class GameWindow extends JFrame
               case(2):g2.setColor(Color.BLUE);break;
               case(4):g2.setColor(Color.BLACK);break;
               case(8):g2.setColor(Color.GREEN);break;
+              default:g2.setColor(Color.GREEN);break;
             }
 
             //g2.setColor(new Color(0x2dce98));
@@ -163,29 +164,24 @@ public class GameWindow extends JFrame
             if (this.board[j][i] != 0) {
               g2.setColor(Color.ORANGE);
               if(twodolar(this.board[j][i]) != 0){
-                g2.drawString(""+twodolar(this.board[j][i]), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  if(twodolar(this.board[j][i]) > 9){
+                      g2.drawString(""+twodolar(this.board[j][i]), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 5, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  } else {
+                      g2.drawString(""+twodolar(this.board[j][i]), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  }
               }
-
-
-              /* DEPRECATED
-              switch(this.board[j][i]){
-                case(2):
-                  g2.drawString("2", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
-                  break;
-                case(4):
-                  g2.drawString("4", i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
-                  break;
-                case(8):break;
-              }
-              */
             }
           }
       }
       g2.setColor(Color.BLUE);
-      g2.drawString("Score:"+score, 2, (this.board[0].length+1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+      if(logic.alive == true) {
+          g2.drawString("Score:" + score, 2, (this.board[0].length + 1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+      } else {
+          g2.drawString("Final Score:" + score, 2, (this.board[0].length + 1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+      }
     }
 
-    public int twodolar(int i){
+    private int twodolar(int i){
       if(i%2 == 0) {
         return i;
       }
