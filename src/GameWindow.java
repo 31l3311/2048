@@ -60,7 +60,7 @@ public class GameWindow extends JFrame
                   }
                   break;
               }
-              printBoard(playfield.board);
+              //printBoard(playfield.board);
               return false;  
       }
   });
