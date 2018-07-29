@@ -16,13 +16,25 @@ public class Logic {
         gameWindow.printBoard(board);
     }
 
-    public static void spawnTiles(int[][] board, int i){//make me private
+    private static void gameOver(int[][] board){
+        int counter = 0;
+        for (int i = 0; i < board.length; i++) { //ROW
+            for (int j = 0; j < board[0].length; j++) { //COLUMN
+                if(board[j][i] != 0){counter++;}
+            }
+        }
+        if(counter == board.length * board[0].length){
+            alive = false;
+        }
+    }
+
+    public static void spawnTiles(int[][] board, int k){//make me private
         int counter = 0;
         while (counter == 0) {
             int x = (int) (Math.random() * ROWS);
             int y = (int) (Math.random() * COLS);
             if (board[x][y] == 0) {
-                board[x][y] = i;
+                board[x][y] = k;
                 counter++;
                 System.out.println("Added tile");
             }
@@ -34,8 +46,12 @@ public class Logic {
     }
 
     public static int[][] move(int[][]board,char direction){
+        gameOver(board);
         for (int i = 0; i < board.length; i++) { //ROW
             for (int j = 0; j < board[0].length; j++) { //COLUMN
+                if (!alive) {
+                    return board;
+                }
                 /*
                 if(!alive || i+1 < board[j].length && board[j][i] != board[j][i+1]){
                     if(!alive || i-1 >= 0 && board[j][i] != board[j][i-1]){
