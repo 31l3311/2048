@@ -3,7 +3,9 @@ public class Logic {
     private static int ROWS = 0;
     private static int COLS = 0;
     private static GameWindow gameWindow;
+
     public static boolean alive = true;
+    public static int score = 0; //should be privaze
 
     public Logic(GameWindow gameWindow,int ROWS,int COLS, int startTiles, int ersteZwei, int zweiteZwei) { //pls make me a singleton, i love u
         this.COLS = COLS;
@@ -14,17 +16,21 @@ public class Logic {
         gameWindow.printBoard(board);
     }
 
-    private static void spawnTiles(int[][] board){
+    public static void spawnTiles(int[][] board, int i){//make me private
         int counter = 0;
         while (counter == 0) {
             int x = (int) (Math.random() * ROWS);
             int y = (int) (Math.random() * COLS);
             if (board[x][y] == 0) {
-                board[x][y] = 2;
+                board[x][y] = i;
                 counter++;
                 System.out.println("Added tile");
             }
         }
+    }
+
+    private static void scoreCalc(int i){
+        score += i;
     }
 
     public static int[][] move(int[][]board,char direction){
@@ -42,11 +48,13 @@ public class Logic {
                     }
                 }
                 TODO: FIX*/
+
                 if(board[j][i] != 0){
                     System.out.println("Move detected: ("+j+"/"+i+")["+board[j][i]+"]");
                     if(direction == 'l'){
                         if(i-1 >= 0 && board[j][i-1] == board[j][i]){
                             board[j][i-1] = board[j][i-1]*2;
+                            scoreCalc(board[j][i]);
                             board[j][i] = 0;
                         } else if(i-1 >= 0 && board[j][i-1] == 0){
                             board[j][i-1] = board[j][i];
@@ -57,6 +65,7 @@ public class Logic {
                     } else if(direction == 'r'){
                         if(i+1 < board.length && board[j][i+1] == board[j][i]){
                             board[j][i+1] = board[j][i+1]*2;
+                            scoreCalc(board[j][i]);
                             board[j][i] = 0;
                         } else if(i+1 < board.length && board[j][i+1] == 0) {
                             board[j][i + 1] = board[j][i];
@@ -67,6 +76,7 @@ public class Logic {
                     } else if(direction == 'd'){
                             if(j+1 < board.length && board[j+1][i] == board[j][i]){
                                 board[j+1][i] = board[j+1][i]*2;
+                                scoreCalc(board[j][i]);
                                 board[j][i] = 0;
                             } else if(j+1 < board.length && board[j+1][i] == 0){
                             board[j+1][i] = board[j][i];
@@ -77,6 +87,7 @@ public class Logic {
                     } else if(direction == 'u'){
                             if(j-1 >= 0 && board[j-1][i] == board[j][i]){
                                 board[j-1][i] = board[j-1][i]*2;
+                                scoreCalc(board[j][i]);
                                 board[j][i] = 0;
                             } else if(j-1 >= 0 && board[j-1][i] == 0){
                             board[j-1][i] = board[j][i];
@@ -88,7 +99,7 @@ public class Logic {
                 }
             }
         }
-        spawnTiles(board);
+        spawnTiles(board,2);
         gameWindow.printBoard(board);
         return board;
     }

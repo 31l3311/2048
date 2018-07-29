@@ -6,6 +6,7 @@
 * Fix automatic color change
 * Add Themes
 * Add Options menu
+* Logic Class has to be singleton
 
 ## Instructions
 

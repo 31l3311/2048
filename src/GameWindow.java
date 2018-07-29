@@ -20,7 +20,6 @@ public class GameWindow extends JFrame
   private int squaresize = 60;
   private int mposx = 0,mposy = 0;
   private final int mouseBuffer = 200;
-  private int score = 0;
   private Logic logic;
   
   public GameWindow(int numbrows, int numbcols)
@@ -57,6 +56,8 @@ public class GameWindow extends JFrame
                   } else if (ke.getKeyCode() == KeyEvent.VK_D || ke.getKeyCode() == KeyEvent.VK_RIGHT) {
                     System.out.println("Right (KEY)");
                     playfield.board = logic.move(playfield.board,'r');
+                  } else if (ke.getKeyCode() == KeyEvent.VK_P){
+                      logic.spawnTiles(playfield.board,2048);
                   }
                   break;
               }
@@ -133,7 +134,7 @@ public class GameWindow extends JFrame
 
     public void paintComponent(Graphics g) {
       Graphics2D g2 = (Graphics2D)g;
-      Font currentFont = g.getFont();
+      Font currentFont = new Font("Calibri", Font.PLAIN, 50);
       Font newFont = currentFont.deriveFont(GameWindow.this.squaresize / 1.5F);
       g.setFont(newFont);
       
@@ -164,20 +165,27 @@ public class GameWindow extends JFrame
             if (this.board[j][i] != 0) {
               g2.setColor(Color.ORANGE);
               if(twodolar(this.board[j][i]) != 0){
-                  if(twodolar(this.board[j][i]) > 9){
-                      g2.drawString(""+twodolar(this.board[j][i]), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 5, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
-                  } else {
-                      g2.drawString(""+twodolar(this.board[j][i]), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  if(String.valueOf(twodolar(this.board[j][i])).length() < 2){
+                      g2.drawString(String.valueOf(twodolar(this.board[j][i])), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 3, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  } else if(String.valueOf(twodolar(this.board[j][i])).length() < 3){
+                      g2.drawString(String.valueOf(twodolar(this.board[j][i])), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 5, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+                  } else if(String.valueOf(twodolar(this.board[j][i])).length() < 4){
+                      g.setFont(newFont.deriveFont(GameWindow.this.squaresize / 2F));
+                      g2.drawString(String.valueOf(twodolar(this.board[j][i])), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 7, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 3);
+                  } else if(String.valueOf(twodolar(this.board[j][i])).length() < 5){
+                      g.setFont(newFont.deriveFont(GameWindow.this.squaresize / 2.5F));
+                      g2.drawString(String.valueOf(twodolar(this.board[j][i])), i * GameWindow.this.squaresize + GameWindow.this.squaresize / 7, jj * GameWindow.this.squaresize - GameWindow.this.squaresize / 3);
                   }
+                  g.setFont(newFont);
               }
             }
           }
       }
       g2.setColor(Color.BLUE);
       if(logic.alive == true) {
-          g2.drawString("Score:" + score, 2, (this.board[0].length + 1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+          g2.drawString("Score:" + logic.score, 2, (this.board[0].length + 1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
       } else {
-          g2.drawString("Final Score:" + score, 2, (this.board[0].length + 1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
+          g2.drawString("Final Score:" + logic.score, 2, (this.board[0].length + 1) * GameWindow.this.squaresize - GameWindow.this.squaresize / 4);
       }
     }
 
