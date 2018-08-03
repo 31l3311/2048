@@ -72,6 +72,7 @@ public class Logic {
                             board[j][i-1] = board[j][i-1]*2;
                             scoreCalc(board[j][i]);
                             board[j][i] = 0;
+                            i = 0;j = 0;
                         } else if(i-1 >= 0 && board[j][i-1] == 0){
                             board[j][i-1] = board[j][i];
                             board[j][i] = 0;
@@ -83,6 +84,7 @@ public class Logic {
                             board[j][i+1] = board[j][i+1]*2;
                             scoreCalc(board[j][i]);
                             board[j][i] = 0;
+                            i = 0;j = 0;
                         } else if(i+1 < board.length && board[j][i+1] == 0) {
                             board[j][i + 1] = board[j][i];
                             board[j][i] = 0;
@@ -94,6 +96,7 @@ public class Logic {
                                 board[j+1][i] = board[j+1][i]*2;
                                 scoreCalc(board[j][i]);
                                 board[j][i] = 0;
+                                i = 0;j = 0;
                             } else if(j+1 < board.length && board[j+1][i] == 0){
                             board[j+1][i] = board[j][i];
                             board[j][i] = 0;
@@ -105,6 +108,7 @@ public class Logic {
                                 board[j-1][i] = board[j-1][i]*2;
                                 scoreCalc(board[j][i]);
                                 board[j][i] = 0;
+                                i = 0;j = 0;
                             } else if(j-1 >= 0 && board[j-1][i] == 0){
                             board[j-1][i] = board[j][i];
                             board[j][i] = 0;
