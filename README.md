@@ -1,10 +1,9 @@
 # 2048
 
 ## TODO
-<font color=red>
 * Fix wrong tiles matched first
 * Fix automatic color change
-* Fix always alive</font>
+* Fix always alive
 * Add Themes
 * Add Options menu
 * Logic Class has to be singleton
