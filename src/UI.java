@@ -8,6 +8,8 @@ import javafx.scene.control.ButtonBar;
 
 public class UI {
 
+    private static String version = "0.7.45";
+
 	private static JButton addAButton(String text, Container con, JPanel panel,int i) {
         final JButton button = new JButton(text) {
 			{
@@ -21,7 +23,7 @@ public class UI {
 
 		button.setAlignmentX(con.CENTER_ALIGNMENT);
 		panel.add(button);
-		panel.add(Box.createHorizontalStrut(2));
+		panel.add(Box.createHorizontalStrut(1));
 
 		ActionListener listener = new ClickListener(i);
 		button.addActionListener(listener);
@@ -48,7 +50,7 @@ public static void main(String[] args) {
 	addAButton("Play (hooman mode)",frame.getContentPane(),panel,0);
 	addAButton("Play (AI mode)",frame.getContentPane(),panel,1);
 	addAButton("Exit game! (fag)",frame.getContentPane(),panel,2);
-	addALabel("by Kim Roggenbuck & Phil Roggenbuck", frame.getContentPane(),panel,15,Color.BLACK);
+	addALabel("Version: "+version+" | by Kim Roggenbuck & Phil Roggenbuck", frame.getContentPane(),panel,15,Color.BLACK);
 		
 	//style frame and show it
 	frame.add(panel);
