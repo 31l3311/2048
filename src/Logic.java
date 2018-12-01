@@ -52,18 +52,6 @@ public class Logic {
                 if (!alive) {
                     return board;
                 }
-                /*
-                if(!alive || i+1 < board[j].length && board[j][i] != board[j][i+1]){
-                    if(!alive || i-1 >= 0 && board[j][i] != board[j][i-1]){
-                        if(!alive || j-1 >= 0 && board[j][i] != board[j-1][i]){
-                            if(!alive || j+1 < board.length && board[j][i] != board[j+1][i]){
-                                alive = false;
-                                return board;
-                            }
-                        }
-                    }
-                }
-                TODO: FIX*/
 
                 if(board[j][i] != 0){
                     System.out.println("Move detected: ("+j+"/"+i+")["+board[j][i]+"]");
@@ -77,7 +65,7 @@ public class Logic {
                             board[j][i-1] = board[j][i];
                             board[j][i] = 0;
                             System.out.println("Move done: ("+j+"/"+i+")["+board[j][i]+"]");
-                            i = 0;j = 0;
+                             //i = 0;j = 0;
                         }
                     } else if(direction == 'r'){
                         if(i+1 < board.length && board[j][i+1] == board[j][i]){
@@ -89,7 +77,7 @@ public class Logic {
                             board[j][i + 1] = board[j][i];
                             board[j][i] = 0;
                             System.out.println("Move done: (" + j + "/" + i + ")[" + board[j][i] + "]");
-                            i = 0;j = 0;
+                            //i = 0;j = 0;
                         }
                     } else if(direction == 'd'){
                             if(j+1 < board.length && board[j+1][i] == board[j][i]){
@@ -101,7 +89,7 @@ public class Logic {
                             board[j+1][i] = board[j][i];
                             board[j][i] = 0;
                             System.out.println("Move done: ("+j+"/"+i+")["+board[j][i]+"]");
-                            i = 0;j = 0;
+                            //i = 0;j = 0;
                         }
                     } else if(direction == 'u'){
                             if(j-1 >= 0 && board[j-1][i] == board[j][i]){
@@ -113,7 +101,7 @@ public class Logic {
                             board[j-1][i] = board[j][i];
                             board[j][i] = 0;
                             System.out.println("Move done: ("+j+"/"+i+")["+board[j][i]+"]");
-                            i = 0;j = 0;
+                            //i = 0;j = 0;
                         }
                     }
                 }
